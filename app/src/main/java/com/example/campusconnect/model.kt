@@ -11,6 +11,7 @@ data class model(
     val linkdin_url:String,
     val skills:String,
     val expertise:String*/
+   val uid:String,
    val profileImage: String?=null,
    val name: String?=null,
    val coursename: String?=null,
