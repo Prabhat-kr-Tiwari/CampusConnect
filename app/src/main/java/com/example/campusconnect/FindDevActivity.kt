@@ -57,7 +57,7 @@ class FindDevActivity : AppCompatActivity() {
 
 
     }
-
+    //new
     private fun getUserData() {
         Log.d("Prabhat", "getUserData called")
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
@@ -70,27 +70,66 @@ class FindDevActivity : AppCompatActivity() {
                     Log.d("Prabhat", "onDataChange: if snapshot exist ")
                     Log.d("Prabhat", "onDataChange: ${snapshot.children.iterator()}")
                     for (userSnapshot in snapshot.children) {
-
                         val user = userSnapshot.getValue(model::class.java)
-                        Log.d("Prabhat", "onDataChange: $user")
-//                        userArrayList.add(user!!)
-                        newlist.add(user!!)
+                       /* // Convert the comma-separated skills string to a List
+                        val skillsString = user?.skills
+                        if (user != null && !user.skills.isNullOrEmpty()) {
+                            val skillsList = user.skills.split(",").map { it.trim() }
+                            user.skills = skillsList.toMutableList()
+                        }*/
 
+                        Log.d("Prabhat", "onDataChange: $user")
+                        newlist.add(user!!)
                     }
+
                     userArrayList.clear()
                     userArrayList.addAll(newlist)
                     Log.d("Prabhat", "onDataChange: $userArrayList ")
                     binding.recyclerView.adapter =
-                        CampusConnectAdapter(applicationContext, userArrayList)
-
-
+                        CampusConnectAdapter(this@FindDevActivity, userArrayList)
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
     }
+
+
+    /* private fun getUserData() {
+         Log.d("Prabhat", "getUserData called")
+         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+         databaseReference.addValueEventListener(object : ValueEventListener {
+             override fun onDataChange(snapshot: DataSnapshot) {
+                 Log.d("Prabhat", "onDataChange: inside it")
+                 val newlist = ArrayList<model>()
+
+                 if (snapshot.exists()) {
+                     Log.d("Prabhat", "onDataChange: if snapshot exist ")
+                     Log.d("Prabhat", "onDataChange: ${snapshot.children.iterator()}")
+                     for (userSnapshot in snapshot.children) {
+
+                         val user = userSnapshot.getValue(model::class.java)
+                         Log.d("Prabhat", "onDataChange: $user")
+ //                        userArrayList.add(user!!)
+                         newlist.add(user!!)
+
+                     }
+                     userArrayList.clear()
+                     userArrayList.addAll(newlist)
+                     Log.d("Prabhat", "onDataChange: $userArrayList ")
+                     binding.recyclerView.adapter =
+                         CampusConnectAdapter(applicationContext, userArrayList)
+
+
+                 }
+             }
+
+             override fun onCancelled(error: DatabaseError) {
+                 TODO("Not yet implemented")
+             }
+
+         })
+     }*/
 }

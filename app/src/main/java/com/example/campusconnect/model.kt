@@ -11,7 +11,7 @@ data class model(
     val about: String? = null,
     val githuburl: String? = null,
     val linkdinurl: String? = null,
-    val skills: String? = null,
+    var skills: String?=null,
     val expertise: String? = null
 
 

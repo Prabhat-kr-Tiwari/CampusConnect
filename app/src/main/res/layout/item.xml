@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="12dp">
@@ -134,10 +135,10 @@
                                     android:id="@+id/github_url"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:autoLink="web"
                                     android:text="Github"
                                     android:textColor="#566AD1"
-                                    android:textStyle="bold"
-                                    android:autoLink="web" />
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/linkdin_url"
@@ -197,89 +198,18 @@
                         </RelativeLayout>
 
                         <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
 
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/appCompatButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                app:cardBackgroundColor="@color/white"
-
-                                >
-
-                                <TextView
-                                    android:id="@+id/skill_1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="9dp"
-                                    android:gravity="center"
-                                    android:padding="5dp"
-                                    android:text="Android SDK"
-                                    android:textColor="#566AD1"
-                                    android:textSize="19sp"
-
-
-                                    />
-
-
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/appCompatButton1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="5dp"
-                                android:padding="5dp"
-                                app:cardBackgroundColor="@color/white"
-
-                                >
-
-                                <TextView
-                                    android:id="@+id/skill_2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:padding="5dp"
-                                    android:text="Firebase"
-                                    android:textColor="#566AD1"
-                                    android:textSize="19sp"
-
-
-                                    />
-
-
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/appCompatButton2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="9dp"
-                                android:layout_marginTop="5dp"
-                                app:cardBackgroundColor="@color/white"
-
-
-                                >
-
-                                <TextView
-                                    android:id="@+id/skill_3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:padding="5dp"
-                                    android:text="RESTFUL API"
-                                    android:textColor="#566AD1"
-                                    android:textSize="19sp"
-
-
-                                    />
-
-
-                            </com.google.android.material.card.MaterialCardView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_skills"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                tools:listitem="@layout/item_skills" />
 
 
                         </androidx.appcompat.widget.LinearLayoutCompat>

@@ -50,9 +50,9 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
     private lateinit var database: DatabaseReference
     private lateinit var saveImageToInternalStorage: Uri
     private var model: model? = null
-    private lateinit var storage:FirebaseStorage
+    private lateinit var storage: FirebaseStorage
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var selectedImage:Uri
+    private lateinit var selectedImage: Uri
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -61,9 +61,9 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
         //FirebaseApp.initializeApp(this)
         Log.d("Prabhatji", "inside oncreate")
 
-        db=FirebaseDatabase.getInstance()
-        storage= FirebaseStorage.getInstance()
-        mAuth= FirebaseAuth.getInstance()
+        db = FirebaseDatabase.getInstance()
+        storage = FirebaseStorage.getInstance()
+        mAuth = FirebaseAuth.getInstance()
 
         binding.profileImage.setOnClickListener {
             val picturedialog = AlertDialog.Builder(this)
@@ -216,7 +216,13 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private val REQUIRED_PERMISSIONS =
+    private val REQUIRED_PERMISSIONS = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        mutableListOf(
+            android.Manifest.permission.CAMERA,
+            android.Manifest.permission.READ_MEDIA_IMAGES
+        ).apply {
+        }.toTypedArray()
+    } else {
         mutableListOf(
             android.Manifest.permission.CAMERA,
             android.Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -226,6 +232,7 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
                 add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
             }
         }.toTypedArray()
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -345,8 +352,8 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
                 if (data != null) {
                     val contentUri = data.data
 
-                    if (data.data!=null){
-                        selectedImage=data.data!!
+                    if (data.data != null) {
+                        selectedImage = data.data!!
                     }
                     try {
 
@@ -498,7 +505,6 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
                         //binding.profileImage.setImageURI(saveImageToInternalStorage)
 
 
-
                     }
 
                 }
@@ -533,23 +539,25 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
             throw RuntimeException("Error reading image data", e)
         }
     }
-    private fun uploadProfileImage(){
-        Log.d("Prabhat", "insided uploadProfileImage: ")
-        val reference=storage.reference.child("Profile").child(Date().time.toString())
-        reference.putFile(selectedImage).addOnCompleteListener{
-            if(it.isSuccessful){
-                Log.d("Prabhat", "Download url"+reference.downloadUrl.toString())
 
-                reference.downloadUrl.addOnSuccessListener { task->
+    private fun uploadProfileImage() {
+        Log.d("Prabhat", "insided uploadProfileImage: ")
+        val reference = storage.reference.child("Profile").child(Date().time.toString())
+        reference.putFile(selectedImage).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Log.d("Prabhat", "Download url" + reference.downloadUrl.toString())
+
+                reference.downloadUrl.addOnSuccessListener { task ->
                     UploadUserDetails(task.toString())
                 }
-            }else{
+            } else {
                 Toast.makeText(this, "failed to upload image", Toast.LENGTH_SHORT).show()
-                Log.d("Prabhat", "uploadProfileImage: "+it.result)
+                Log.d("Prabhat", "uploadProfileImage: " + it.result)
             }
         }
     }
-    private fun UploadUserDetails(imageUrl: String){
+
+    private fun UploadUserDetails(imageUrl: String) {
         Log.d("Prabhat", "insided UploadUserDetails ")
 
 
@@ -563,6 +571,18 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
         val githuburl = binding.githubLinkEt.text.toString()
         val linkdinurl = binding.linkdinLinkEt.text.toString()
         val skills = binding.skillsEt.text.toString()
+        val skillList = mutableListOf<String>()
+//        val skills = binding.skillsEt.text.toString()
+//        if (skills.isNotEmpty()) {
+//            // Split the text (if it contains multiple skills separated by a delimiter, e.g., comma)
+//            val individualSkills = skills.split(",")
+//
+//            // Add each skill to the skillList after trimming whitespace
+//            for (skill in individualSkills) {
+//                skillList.add(skill.trim())
+//            }
+//        }
+
         val expertise = binding.expertiseEt.text.toString()
 
 
@@ -590,7 +610,7 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
             binding.linkdinLinkEt.text?.clear()
             binding.skillsEt.text?.clear()
             binding.expertiseEt.text?.clear()
-            sImage=""
+            sImage = ""
             Toast.makeText(this, "Successfully saved", Toast.LENGTH_SHORT).show()
 
         }.addOnFailureListener {
@@ -600,11 +620,6 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
         }
 
     }
-
-
-
-
-
 
 
 }
