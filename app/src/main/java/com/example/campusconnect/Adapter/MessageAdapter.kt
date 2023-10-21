@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class MessageAdapter(
 
+    //
     val context: Context,
     messages: ArrayList<Message>?,
     senderRoom: String,
