@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.connectWithVisibility.set(View.INVISIBLE)
             viewModel.splashLayoutVisibility.set(View.VISIBLE)
-            val intent=Intent(this,SignUpActivity::class.java)
+            val intent=Intent(this,LoginActivity::class.java)
             startActivity(intent)
 //            finish()
         }, 3000)

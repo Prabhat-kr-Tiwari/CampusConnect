@@ -5,7 +5,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="12dp">
 
         <com.google.android.material.card.MaterialCardView
@@ -24,7 +24,7 @@
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="12dp">
+                    app:cardElevation="15dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -49,8 +49,9 @@
 
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:paddingBottom="5dp"
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -151,6 +152,11 @@
 
                             </androidx.appcompat.widget.LinearLayoutCompat>
 
+                            <View
+                                android:layout_marginTop="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp" />
+
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -159,10 +165,10 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
-                <View
+                <!--<View
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
-                    android:background="#BDBDBD" />
+                    android:background="#BDBDBD" />-->
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -209,6 +215,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:spanCount="1"
                                 tools:listitem="@layout/item_skills" />
 
 

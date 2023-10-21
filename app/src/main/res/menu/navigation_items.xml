@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/groups"
+        android:orderInCategory="1"
+        android:title="Groups"
+        android:icon="@drawable/baseline_groups_2_24"
+
+        />
+    <item
+        android:id="@+id/events"
+        android:orderInCategory="2"
+        android:title="Events"
+        android:icon="@drawable/baseline_event_note_24"
+
+        />
+    <item
+        android:id="@+id/space1"
+        android:orderInCategory="3"
+        android:title="" />
+    <item
+        android:id="@+id/space2"
+        android:orderInCategory="3"
+        android:title="" />
+    <item
+        android:id="@+id/space3"
+        android:orderInCategory="3"
+        android:title="" />
+    <item
+        android:id="@+id/space4"
+        android:orderInCategory="3"
+        android:title="" />
+    <item
+        android:id="@+id/space5"
+        android:orderInCategory="3"
+        android:title="" />
+    <item
+        android:id="@+id/space6"
+        android:orderInCategory="3"
+        android:title="" />
+    <item
+        android:id="@+id/space7"
+        android:orderInCategory="3"
+        android:title="" />
+
+
+
+
+    <item
+        android:id="@+id/settings"
+        android:orderInCategory="4"
+        android:title="Settings"
+        android:icon="@drawable/baseline_settings_24"
+        android:iconTint="@color/blue"
+
+
+        />
+</menu>

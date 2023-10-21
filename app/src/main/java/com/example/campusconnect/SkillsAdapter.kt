@@ -12,9 +12,7 @@ class SkillsAdapter(private val context: Context, private val list: List<String>
     inner class ViewHolder(binding: ItemSkillsBinding) : RecyclerView.ViewHolder(binding.root) {
         val skills = binding.skill
 
-
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder(
@@ -25,7 +23,6 @@ class SkillsAdapter(private val context: Context, private val list: List<String>
             )
         )
     }
-
     override fun getItemCount(): Int {
         return list!!.size
     }
@@ -35,7 +32,6 @@ class SkillsAdapter(private val context: Context, private val list: List<String>
         val skillsModel = list?.get(position)
         Log.d("dubeyji", "onBindViewHolder: $skillsModel")
         holder.skills.text = skillsModel
-
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.campusconnect
+package com.example.campusconnect.model
 
 data class model(
 

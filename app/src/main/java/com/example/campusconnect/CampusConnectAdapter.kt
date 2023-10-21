@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.campusconnect.databinding.ItemBinding
+import com.example.campusconnect.model.model
+import com.example.campusconnect.ui.ChatActivity
 
 class CampusConnectAdapter(
     private val context: Context,
@@ -108,6 +110,15 @@ class CampusConnectAdapter(
         } else {
             // Hide the GitHub URL TextView if it's empty
             holder.linkdinurl.visibility = View.GONE
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent=Intent(context,ChatActivity::class.java)
+            intent.putExtra("name",model.name)
+            intent.putExtra("image",model.profileImage)
+            intent.putExtra("uid",model.uid)
+            context.startActivity(intent)
+
         }
 
 

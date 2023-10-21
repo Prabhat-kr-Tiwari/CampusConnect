@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Circular shape layer with border -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+            <stroke
+                android:width="2dp"
+            android:color="@color/blue" /> <!-- Adjust the border color as needed -->
+        </shape>
+    </item>
+
+    <!-- Icon layer (centered within the circular shape) -->
+
+</layer-list>

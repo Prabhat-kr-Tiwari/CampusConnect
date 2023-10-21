@@ -69,6 +69,9 @@ class SignUpActivity : AppCompatActivity() {
                                 "Account created.",
                                 Toast.LENGTH_SHORT,
                             ).show()
+                            val intent = Intent(this, UserProfile::class.java)
+                            startActivity(intent)
+                            finish()
 
                         } else {
                             // If sign in fails, display a message to the user.

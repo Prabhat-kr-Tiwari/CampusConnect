@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.campusconnect.databinding.ActivityUserProfileBinding
+import com.example.campusconnect.model.model
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -543,17 +544,19 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
     private fun uploadProfileImage() {
         Log.d("Prabhat", "insided uploadProfileImage: ")
         val reference = storage.reference.child("Profile").child(Date().time.toString())
-        reference.putFile(selectedImage).addOnCompleteListener {
-            if (it.isSuccessful) {
-                Log.d("Prabhat", "Download url" + reference.downloadUrl.toString())
 
-                reference.downloadUrl.addOnSuccessListener { task ->
-                    UploadUserDetails(task.toString())
+            reference.putFile(selectedImage!!).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Log.d("Prabhatimageurl", "Download url" + reference.downloadUrl.toString())
+
+                    reference.downloadUrl.addOnSuccessListener { task ->
+                        UploadUserDetails(task.toString())
+                    }
+                } else {
+                    Toast.makeText(this, "failed to upload image", Toast.LENGTH_SHORT).show()
+                    Log.d("uploadProfileImagePrabhat", "uploadProfileImage: failed" + it.result)
                 }
-            } else {
-                Toast.makeText(this, "failed to upload image", Toast.LENGTH_SHORT).show()
-                Log.d("Prabhat", "uploadProfileImage: " + it.result)
-            }
+
         }
     }
 

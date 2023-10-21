@@ -22,6 +22,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+//        else{
+//            val intent = Intent(this, UserProfile::class.java)
+//            startActivity(intent)
+//            finish()
+//
+//        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

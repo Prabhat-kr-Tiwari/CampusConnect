@@ -1,0 +1,14 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Circular white background -->
+    <item>
+        <shape
+            android:shape="oval">
+            <solid android:color="#FFFFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Edit icon (replace with your actual drawable) -->
+    <item
+        android:drawable="@drawable/baseline_edit_24"
+        android:gravity="center" />
+</layer-list>
