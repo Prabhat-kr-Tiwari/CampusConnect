@@ -12,7 +12,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".Profile">
+            tools:context=".ui.Profile">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="16dp"
-                android:src="@drawable/profile"
+                android:src="@drawable/placeholder"
                 app:civ_border_color="#FFFFFFFF"
                 app:civ_border_overlay="true"
 
@@ -87,7 +87,7 @@
                 android:layout_marginTop="48dp"
                 android:text="Prabhat Kumar Tiwari"
                 android:textColor="@color/black"
-                android:textSize="23sp"
+                android:textSize="20sp"
 
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,10 +99,10 @@
                 android:id="@+id/college_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+
                 android:text="Galgotia's University"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
 
 
                 app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +128,7 @@
                 android:layout_marginTop="16dp"
                 android:text="About"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
 
 
@@ -171,7 +171,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Education"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
 
 
@@ -187,7 +187,7 @@
 
                 android:text="Galgotias University"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
 
 
                 app:layout_constraintEnd_toEndOf="parent"
@@ -202,7 +202,7 @@
                 android:layout_marginTop="2dp"
                 android:text="MCA"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.090"
                 app:layout_constraintStart_toStartOf="parent"
@@ -226,7 +226,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Projects"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
 
 
@@ -341,7 +341,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Skills"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
 
 
@@ -406,7 +406,7 @@
                 android:layout_marginTop="16dp"
                 android:text="License  Certification"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
 
 

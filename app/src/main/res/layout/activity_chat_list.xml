@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.ChatListActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            >
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back_backspace"
+                android:layout_gravity="center"
+
+                />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/editText"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/new_gray">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:queryHint="Search"
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@android:color/transparent"
+
+                    />
+            </com.google.android.material.card.MaterialCardView>
+            <!--<EditText
+                android:id="@+id/editText"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+
+
+                android:padding="5dp"
+                android:background="@drawable/shape_rounded_corner"
+                android:drawableStart="@drawable/baseline_search_24"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/black"
+                android:hint="Search Message"
+                android:inputType="text"
+                android:singleLine="true"
+                android:backgroundTint="@color/new_gray"
+                android:layout_gravity="center"
+                android:layout_marginStart="25dp"
+                 />-->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/filter_message"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/sliders2"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+
+                />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/manage_chats"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                android:src="@drawable/three_dots_vertical"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+
+                />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/linear_layout"
+
+            tools:itemCount="10"
+            tools:listitem="@layout/chatlistitem" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

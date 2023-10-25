@@ -1,9 +1,10 @@
-package com.example.campusconnect
+package com.example.campusconnect.model
 
 import android.content.Intent
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.databinding.ObservableField
+import com.example.campusconnect.ui.SignUpActivity
 
 class MyViewModel : ViewModel() {
     val connectWithVisibility = ObservableField(View.VISIBLE)

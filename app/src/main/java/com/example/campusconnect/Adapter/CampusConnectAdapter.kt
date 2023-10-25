@@ -1,4 +1,4 @@
-package com.example.campusconnect
+package com.example.campusconnect.Adapter
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,7 @@ import com.example.campusconnect.ui.ChatActivity
 
 class CampusConnectAdapter(
     private val context: Context,
-    private val list: ArrayList<model>
+    private var list: ArrayList<model>
 ) : RecyclerView.Adapter<CampusConnectAdapter.ViewHolder>() {
 
     private var onClickListener: View.OnClickListener? = null
@@ -30,6 +30,7 @@ class CampusConnectAdapter(
         val about = binding.about
         val githuburl = binding.githubUrl
         val linkdinurl = binding.linkdinUrl
+        val requestchat=binding.requestChatRl
 
         //        val skills = binding.skill1
         val skills = binding.rvSkills
@@ -38,6 +39,11 @@ class CampusConnectAdapter(
 
 
     }
+    fun setFilteredList(list: ArrayList<model>){
+        this.list=list
+        notifyDataSetChanged()
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -112,7 +118,7 @@ class CampusConnectAdapter(
             holder.linkdinurl.visibility = View.GONE
         }
 
-        holder.itemView.setOnClickListener {
+        holder.requestchat.setOnClickListener {
             val intent=Intent(context,ChatActivity::class.java)
             intent.putExtra("name",model.name)
             intent.putExtra("image",model.profileImage)

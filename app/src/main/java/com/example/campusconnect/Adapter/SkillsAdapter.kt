@@ -1,4 +1,4 @@
-package com.example.campusconnect
+package com.example.campusconnect.Adapter
 
 import android.content.Context
 import android.util.Log

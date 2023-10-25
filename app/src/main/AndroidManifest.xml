@@ -27,26 +27,28 @@
         <activity
             android:name=".ui.ChatActivity"
             android:exported="false" />
+        <activity android:name=".ui.ChatListActivity"
+            android:exported="false"/>
         <activity
-            android:name=".Profile"
+            android:name=".ui.Profile"
             android:exported="false" />
         <activity
             android:name=".NavigationDrawer"
             android:exported="false" />
         <activity
-            android:name=".UserProfile"
+            android:name=".ui.UserProfile"
             android:exported="false" />
         <activity
-            android:name=".FindDevActivity"
+            android:name=".ui.FindDevActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".ui.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

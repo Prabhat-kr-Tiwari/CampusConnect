@@ -321,7 +321,9 @@
 
                                 >
 
-                                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                <RelativeLayout
+                                    android:id="@+id/requestChatRl"
+                                    xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp">

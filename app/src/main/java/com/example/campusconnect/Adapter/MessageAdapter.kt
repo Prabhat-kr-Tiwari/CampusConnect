@@ -90,8 +90,9 @@ class MessageAdapter(
 //            viewHolder.binding.message.text = message.message
             //mycode
             holder.message.text=message.message
-            Log.d("SenderMessage", "Sender's Message: ${message.message}")
+            Log.d("SenderMessage", "Sender's Message: ${message.messageId}")
             viewHolder.itemView.setOnLongClickListener {
+                Log.d("PRABHUDEVA", "onBindViewHolder: $message")
                 val view = LayoutInflater
                     .from(context).inflate(R.layout.delete_layout, null)
                 val binding: DeleteLayoutBinding = DeleteLayoutBinding.bind(view)
@@ -99,21 +100,26 @@ class MessageAdapter(
                     AlertDialog.Builder(context).setTitle("Delete Message").setView(binding.root)
                         .create()
                 binding.everyone.setOnClickListener {
+                    Log.d("thisisamessage", "onBindViewHolder: ${message.messageId}")
 
                     message.message = "This message is removed"
                     message.messageId?.let { it1 ->
+                        Log.d("TAG", "onBindViewHolder: called")
                         Log.d("TAGit1sender", "onBindViewHolder: ${it1}")
                         FirebaseDatabase.getInstance().reference.child("chats")
                             .child(senderRoom)
                             .child("messages")
-                            .child(it1).setValue(message)
+//                            .child(it1).setValue(message)
+                            .child(it1).removeValue()
 
                     }
                     message.messageId.let { it1 ->
+                        Log.d("TAGit1receiver", "onBindViewHolder: ${it1}")
                         FirebaseDatabase.getInstance().reference.child("chats")
                             .child(receiverRoom)
                             .child("messages")
-                            .child(it1!!).setValue(message)
+//                            .child(it1!!).setValue(message)
+                            .child(it1!!).removeValue()
 
                     }
                     dialog.dismiss()
@@ -122,6 +128,7 @@ class MessageAdapter(
 
                     message.messageId.let { it1 ->
 
+                        Log.d("TAGit1sender", "onBindViewHolder: ${it1}")
                         FirebaseDatabase.getInstance().reference.child("chats")
                             .child(senderRoom)
                             .child("messages")
@@ -162,6 +169,7 @@ class MessageAdapter(
             //mycode
             holder.message.text=message.message
             viewHolder.itemView.setOnClickListener {
+                Log.d("messageid", "onBindViewHolder: ${message.messageId}")
                 val view = LayoutInflater
                     .from(context).inflate(R.layout.delete_layout, null)
                 val binding: DeleteLayoutBinding = DeleteLayoutBinding.bind(view)
@@ -169,9 +177,11 @@ class MessageAdapter(
                     AlertDialog.Builder(context).setTitle("Delete Message").setView(binding.root)
                         .create()
                 binding.everyone.setOnClickListener {
+                    Log.d("messageid", "onBindViewHolder: ${message.messageId}")
 
                     message.message = "This message is removed"
                     message.messageId?.let { it1 ->
+                        Log.d("TAGit1sender", "onBindViewHolder: ${it1}")
                         FirebaseDatabase.getInstance().reference.child("chats")
                             .child(senderRoom)
                             .child("messages")
@@ -180,6 +190,7 @@ class MessageAdapter(
 
                     }
                     message.messageId.let { it1 ->
+                        Log.d("TAGit1receiver", "onBindViewHolder: ${it1}")
                         FirebaseDatabase.getInstance().reference.child("chats")
                             .child(receiverRoom)
                             .child("messages")
@@ -192,6 +203,7 @@ class MessageAdapter(
 
                     message.messageId.let { it1 ->
 
+                        Log.d("TAGit1sender", "onBindViewHolder: ${it1}")
                         FirebaseDatabase.getInstance().reference.child("chats")
                             .child(senderRoom)
                             .child("messages")

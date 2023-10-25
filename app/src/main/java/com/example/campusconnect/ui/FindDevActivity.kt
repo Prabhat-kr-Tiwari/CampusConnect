@@ -1,19 +1,24 @@
-package com.example.campusconnect
+package com.example.campusconnect.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import androidx.appcompat.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.campusconnect.Adapter.CampusConnectAdapter
+import com.example.campusconnect.R
 import com.example.campusconnect.databinding.ActivityFindDevBinding
 import com.example.campusconnect.model.model
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -24,6 +29,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import java.util.Locale
 
 class FindDevActivity : AppCompatActivity() {
     lateinit var binding: ActivityFindDevBinding
@@ -33,10 +39,19 @@ class FindDevActivity : AppCompatActivity() {
     lateinit var imageView: ImageView
 
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var adapter: CampusConnectAdapter//
 
     //    private lateinit var recyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<model>
 
+
+    //handling back button clicl
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            //showing dialog and then closing the application..
+            showDialog()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -44,6 +59,14 @@ class FindDevActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_find_dev)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_find_dev)
 
+
+        // adding onbackpressed callback listener.
+        onBackPressedDispatcher.addCallback(this,onBackPressedCallback)
+
+        binding.chat.setOnClickListener {
+            val intent=Intent(this,ChatListActivity::class.java)
+            startActivity(intent)
+        }
         mAuth = Firebase.auth
         currentUser = mAuth.currentUser!!
         drawerlayout = findViewById(R.id.drawerLayout)
@@ -95,7 +118,42 @@ class FindDevActivity : AppCompatActivity() {
             Log.d("Prabhat", "onCreate: catch block " + e.printStackTrace())
             e.printStackTrace()
         }
+        //search the devs
+        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+
+        })
+
+
+    }
+
+    private fun filterList(newText: String?) {
+        if (newText!=null){
+            val filteredList=ArrayList<model>()
+            for (i in userArrayList){
+                if(i.name!!.toLowerCase(Locale.ROOT).contains(newText)){
+                    filteredList.add(i)
+
+                }
+            }
+            if(filteredList.isEmpty()){
+                Toast.makeText(this,"No Dev Found",Toast.LENGTH_SHORT).show()
+            }else{
+
+                binding.recyclerView.adapter= CampusConnectAdapter(this,filteredList)
+
+
+
+            }
+
+        }
 
     }
 
@@ -113,8 +171,11 @@ class FindDevActivity : AppCompatActivity() {
                     Log.d("Prabhat", "onDataChange: ${snapshot.children.iterator()}")
                     for (userSnapshot in snapshot.children) {
                         val user = userSnapshot.getValue(model::class.java)
-                        Log.d("Prabhat", "onDataChange: $user")
-                        newlist.add(user!!)
+                        Log.d("USERPrabhat", "onDataChange: ${user!!.uid}")
+                        if (user.uid!=mAuth.uid){
+                            newlist.add(user)
+                        }
+
                     }
 
                     userArrayList.clear()
@@ -171,6 +232,15 @@ class FindDevActivity : AppCompatActivity() {
             }
 
         })
+    }
+    private fun showDialog(){
+        MaterialAlertDialogBuilder(this).apply {
+            setTitle("Are you sure?")
+            setMessage("want to close the application ?")
+            setPositiveButton("Yes") { _, _ -> finishAffinity() }
+            setNegativeButton("No", null)
+            show()
+        }
     }
 
 

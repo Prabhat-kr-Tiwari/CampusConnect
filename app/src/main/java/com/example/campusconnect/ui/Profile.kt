@@ -1,10 +1,12 @@
-package com.example.campusconnect
+package com.example.campusconnect.ui
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.databinding.DataBindingUtil
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.campusconnect.Adapter.CertificateAdapter
 import com.example.campusconnect.Adapter.ProjectAdapter
+import com.example.campusconnect.R
+import com.example.campusconnect.Adapter.SkillsAdapter
 import com.example.campusconnect.databinding.ActivityProfileBinding
 import com.example.campusconnect.model.CertificateModel
 import com.example.campusconnect.model.ProjectModel
@@ -43,6 +47,14 @@ class Profile : AppCompatActivity() {
     private lateinit var certificateArrayList: ArrayList<CertificateModel>
     private var skillsList = mutableListOf<String>()
 
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            //showing dialog and then closing the application..
+          val intent= Intent(this@Profile,FindDevActivity::class.java)
+            startActivity(intent)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_profile)
@@ -52,6 +64,8 @@ class Profile : AppCompatActivity() {
         currentUser = mAuth.currentUser!!
         getUserData()
 
+        // adding onbackpressed callback listener.
+        onBackPressedDispatcher.addCallback(this,onBackPressedCallback)
 
         //adding the project in the recyler view
         try {
@@ -208,7 +222,7 @@ class Profile : AppCompatActivity() {
                         skillsList.addAll(newList)
                         Log.d("amla", "onDataChange: $skillsList")
 
-                        val tempAdapter =SkillsAdapter(this@Profile, skillsList)
+                        val tempAdapter = SkillsAdapter(this@Profile, skillsList)
                         binding.rvSkills.adapter = tempAdapter
                         tempAdapter.notifyDataSetChanged()
 
@@ -378,5 +392,9 @@ class Profile : AppCompatActivity() {
         }.addOnFailureListener {
             Toast.makeText(this, "Failed added", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

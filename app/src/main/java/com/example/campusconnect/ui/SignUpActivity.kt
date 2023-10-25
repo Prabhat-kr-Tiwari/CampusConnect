@@ -1,4 +1,4 @@
-package com.example.campusconnect
+package com.example.campusconnect.ui
 
 
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.text.TextUtils
 
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.campusconnect.R
 import com.example.campusconnect.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -20,7 +21,7 @@ class SignUpActivity : AppCompatActivity() {
         val currentUser = mAuth.currentUser
         if (currentUser != null) {
 
-            val intent=Intent(this,FindDevActivity::class.java)
+            val intent=Intent(this, FindDevActivity::class.java)
             startActivity(intent)
 //            finish()
         }
@@ -28,10 +29,10 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_sign_up)
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
+        binding=DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         mAuth=FirebaseAuth.getInstance()
         binding.login.setOnClickListener {
-            val intent =Intent(this,LoginActivity::class.java)
+            val intent =Intent(this, LoginActivity::class.java)
             startActivity(intent)
 //            finish()
         }

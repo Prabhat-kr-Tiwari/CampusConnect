@@ -1,4 +1,4 @@
-package com.example.campusconnect
+package com.example.campusconnect.ui
 
 //import java.util.Base64
 import android.app.Activity
@@ -22,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import com.example.campusconnect.R
 import com.example.campusconnect.databinding.ActivityUserProfileBinding
 import com.example.campusconnect.model.model
 import com.google.firebase.auth.FirebaseAuth
@@ -604,6 +605,7 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
         )
         Log.d("items", item.toString())
         database.child(mAuth.uid.toString()).setValue(item).addOnSuccessListener {
+            Log.d("DATA", "UploadUserDetails: Data saved")
             binding.fullNameEt.text?.clear()
             Log.d("prabhat", name)
             binding.courseEt.text?.clear()
@@ -615,6 +617,10 @@ class UserProfile : AppCompatActivity(), View.OnClickListener {
             binding.expertiseEt.text?.clear()
             sImage = ""
             Toast.makeText(this, "Successfully saved", Toast.LENGTH_SHORT).show()
+
+            val intent=Intent(this,FindDevActivity::class.java)
+            startActivity(intent)
+
 
         }.addOnFailureListener {
             Toast.makeText(this, "Failed ", Toast.LENGTH_SHORT).show()

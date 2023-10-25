@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.campusconnect.MyViewModel" />
+            type="com.example.campusconnect.model.MyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
